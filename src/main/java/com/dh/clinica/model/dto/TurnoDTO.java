@@ -4,7 +4,7 @@ import com.dh.clinica.entity.Odontologo;
 import com.dh.clinica.entity.Paciente;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Date;
 
 //chequeado
 @Getter

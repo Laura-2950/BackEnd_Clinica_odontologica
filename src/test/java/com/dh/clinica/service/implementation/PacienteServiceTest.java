@@ -1,8 +1,8 @@
 package com.dh.clinica.service.implementation;
 
+import com.dh.clinica.entity.Domicilio;
 import com.dh.clinica.model.dto.DomicilioDTO;
 import com.dh.clinica.model.dto.PacienteDTO;
-import com.dh.clinica.entity.Domicilio;
 import com.dh.clinica.service.IPacienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
