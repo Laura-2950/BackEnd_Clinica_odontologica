@@ -1,10 +1,11 @@
 package com.dh.clinica.model.dto;
 
-import com.dh.clinica.entity.Odontologo;
-import com.dh.clinica.entity.Paciente;
+import com.dh.clinica.model.entity.Odontologo;
+import com.dh.clinica.model.entity.Paciente;
 import lombok.Getter;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
 
 //chequeado
 @Getter
@@ -13,7 +14,7 @@ public class TurnoDTO {
     private Long id;
     private Paciente paciente;
     private Odontologo odontologo;
-    private Date fechaIngreso;
+    private LocalDate fechaIngreso;
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
@@ -23,7 +24,7 @@ public class TurnoDTO {
         this.odontologo = odontologo;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 }

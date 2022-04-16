@@ -1,9 +1,9 @@
 package com.dh.clinica.service.implementation;
 
 
-import com.dh.clinica.entity.Odontologo;
+import com.dh.clinica.model.entity.Odontologo;
 import com.dh.clinica.model.dto.OdontologoDTO;
-import com.dh.clinica.repository.jpa.IOdontologoRepository;
+import com.dh.clinica.repository.IOdontologoRepository;
 import com.dh.clinica.service.IOdontologoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

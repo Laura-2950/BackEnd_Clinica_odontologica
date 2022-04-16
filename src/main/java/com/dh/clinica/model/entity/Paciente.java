@@ -1,12 +1,12 @@
-package com.dh.clinica.entity;
+package com.dh.clinica.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+
 import java.util.Set;
 
 //chequeado
@@ -22,9 +22,9 @@ public class Paciente {
     private String nombre;
     private String apellido;
     private String dni;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fechaIngreso;
+    //@Temporal(TemporalType.DATE)
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaIngreso;
 
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -52,7 +52,7 @@ public class Paciente {
         this.dni = dni;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 

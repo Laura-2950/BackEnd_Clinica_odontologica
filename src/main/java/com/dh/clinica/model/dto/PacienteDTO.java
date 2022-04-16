@@ -1,9 +1,10 @@
 package com.dh.clinica.model.dto;
 
-import com.dh.clinica.entity.Domicilio;
+import com.dh.clinica.model.entity.Domicilio;
 import lombok.Getter;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 //chequeado
 @Getter
@@ -13,7 +14,7 @@ public class PacienteDTO {
     private String nombre;
     private String apellido;
     private String dni;
-    private Date fechaIngreso;
+    private LocalDate fechaIngreso;
     private Domicilio domicilio;
 
     public void setNombre(String nombre) {
@@ -28,7 +29,7 @@ public class PacienteDTO {
         this.dni = dni;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 

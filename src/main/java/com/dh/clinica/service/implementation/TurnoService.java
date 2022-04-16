@@ -1,9 +1,9 @@
 package com.dh.clinica.service.implementation;
 
 
-import com.dh.clinica.entity.Turno;
+import com.dh.clinica.model.entity.Turno;
 import com.dh.clinica.model.dto.TurnoDTO;
-import com.dh.clinica.repository.jpa.ITurnoRepository;
+import com.dh.clinica.repository.ITurnoRepository;
 import com.dh.clinica.service.ITurnoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

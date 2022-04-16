@@ -1,8 +1,8 @@
 package com.dh.clinica.service.implementation;
 
-import com.dh.clinica.entity.Paciente;
+import com.dh.clinica.model.entity.Paciente;
 import com.dh.clinica.model.dto.PacienteDTO;
-import com.dh.clinica.repository.jpa.IPacienteRepository;
+import com.dh.clinica.repository.IPacienteRepository;
 import com.dh.clinica.service.IPacienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

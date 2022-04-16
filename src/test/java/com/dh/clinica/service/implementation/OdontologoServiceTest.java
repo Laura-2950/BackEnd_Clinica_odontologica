@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class OdontologoServiceTest {
 
 
-    private IOdontologoService odontologoService;
+    private static IOdontologoService odontologoService;
     @Autowired
     public OdontologoServiceTest (IOdontologoService odontologoService){
         this.odontologoService=odontologoService;
@@ -22,7 +22,7 @@ class OdontologoServiceTest {
 
 
     @Test
-    void crearYBuscarPorId() {
+    public void crearYBuscarPorId() {
         OdontologoDTO odontologoDTO= new OdontologoDTO();
         odontologoDTO.setApellido("Rodriguez");
         odontologoDTO.setMatricula("AB45962");
@@ -35,7 +35,7 @@ class OdontologoServiceTest {
     }
 
     @Test
-    void actualizaOdontologo() {
+    public void actualizarOdontologo() {
         OdontologoDTO odontologoDTO= new OdontologoDTO();
         odontologoDTO.setApellido("Martinez");
         odontologoDTO.setMatricula("AC52792");
@@ -48,14 +48,14 @@ class OdontologoServiceTest {
     }
 
     @Test
-    void listarOdontologos() {
+    public void listarOdontologos() {
         Set<OdontologoDTO> listadoOdontologos= odontologoService.buscarTodos();
 
         assertTrue(listadoOdontologos.size() != 0);
     }
 
     @Test
-    void eliminarOdontologo() {
+    public void eliminarOdontologo() {
         OdontologoDTO odontologoDTO= new OdontologoDTO();
         odontologoDTO.setApellido("Sanchez");
         odontologoDTO.setMatricula("AD56992");

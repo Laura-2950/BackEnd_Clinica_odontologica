@@ -1,4 +1,4 @@
-package com.dh.clinica.entity;
+package com.dh.clinica.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

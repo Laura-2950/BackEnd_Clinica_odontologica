@@ -1,6 +1,6 @@
-package com.dh.clinica.repository.jpa;
+package com.dh.clinica.repository;
 
-import com.dh.clinica.entity.Odontologo;
+import com.dh.clinica.model.entity.Odontologo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

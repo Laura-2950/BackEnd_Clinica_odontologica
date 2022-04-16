@@ -1,4 +1,4 @@
-package com.dh.clinica.entity;
+package com.dh.clinica.model.entity;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -20,8 +20,8 @@ public class Domicilio {
     private String localidad;
     private String provincia;
 
-    //public Domicilio() {
-    //}
+    public Domicilio() {
+    }
 
     public void setCalle(String calle) {
         this.calle = calle;

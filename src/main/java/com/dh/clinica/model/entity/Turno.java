@@ -1,11 +1,11 @@
-package com.dh.clinica.entity;
+package com.dh.clinica.model.entity;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 //chequeado
 @ToString
@@ -18,9 +18,9 @@ public class Turno {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turno_sequence")
     private Long id;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fechaIngreso;
+    //@Temporal(TemporalType.DATE)
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaIngreso;
 
 
     @ManyToOne
@@ -35,7 +35,7 @@ public class Turno {
     public Turno() {
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
