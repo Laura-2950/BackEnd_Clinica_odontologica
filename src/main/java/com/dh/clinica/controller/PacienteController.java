@@ -1,5 +1,6 @@
 package com.dh.clinica.controller;
 
+import com.dh.clinica.exception.ResourceNotFoundException;
 import com.dh.clinica.model.dto.PacienteDTO;
 import com.dh.clinica.service.implementation.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,17 +46,9 @@ public class PacienteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminar(@PathVariable Long id) {
-        ResponseEntity<String> response = null;
-
-        if (pacienteService.buscarPorId(id) != null) {
+    public ResponseEntity<String> eliminar(@PathVariable Long id) throws ResourceNotFoundException {
             pacienteService.eliminarPaciente(id);
-            response = ResponseEntity.status(HttpStatus.NO_CONTENT).body("Eliminado");
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-
-        return response;
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Paciente eliminado correctamente");
     }
     @GetMapping
     public ResponseEntity<Set<PacienteDTO>> buscarTodos(){

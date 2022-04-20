@@ -1,8 +1,9 @@
 package com.dh.clinica.service.implementation;
 
 
-import com.dh.clinica.model.entity.Turno;
+import com.dh.clinica.exception.ResourceNotFoundException;
 import com.dh.clinica.model.dto.TurnoDTO;
+import com.dh.clinica.model.entity.Turno;
 import com.dh.clinica.repository.ITurnoRepository;
 import com.dh.clinica.service.ITurnoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,8 +50,11 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public void eliminarTurno(Long id) {
+    public void eliminarTurno(Long id) throws ResourceNotFoundException {
+        Optional<Turno> turno = repository.findById(id);
+        if (turno.isPresent())
         repository.deleteById(id);
+        else throw new ResourceNotFoundException("Odontólogo con id: "+id+", no encontrado.");
     }
 
     @Override

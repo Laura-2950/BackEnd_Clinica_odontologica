@@ -1,14 +1,13 @@
 package com.dh.clinica.controller;
 
 
+import com.dh.clinica.exception.ResourceNotFoundException;
 import com.dh.clinica.model.dto.OdontologoDTO;
-
 import com.dh.clinica.service.implementation.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.Set;
 
@@ -49,16 +48,11 @@ public class OdontologoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminar(@PathVariable Long id) {
-        ResponseEntity<String> response = null;
+    public ResponseEntity<String> eliminar(@PathVariable Long id) throws ResourceNotFoundException {
 
-        if (odontologoService.buscarPorId(id) != null) {
             odontologoService.eliminarOdontologo(id);
-            response = ResponseEntity.status(HttpStatus.NO_CONTENT).body("Eliminado");
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return response;
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Odontólogo eliminado correctamente");
     }
     @GetMapping
     public ResponseEntity<Set<OdontologoDTO>> buscarTodos(){

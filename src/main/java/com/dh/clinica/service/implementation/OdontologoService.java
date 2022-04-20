@@ -1,6 +1,7 @@
 package com.dh.clinica.service.implementation;
 
 
+import com.dh.clinica.exception.ResourceNotFoundException;
 import com.dh.clinica.model.entity.Odontologo;
 import com.dh.clinica.model.dto.OdontologoDTO;
 import com.dh.clinica.repository.IOdontologoRepository;
@@ -52,8 +53,11 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public void eliminarOdontologo(Long id) {
+    public void eliminarOdontologo(Long id) throws ResourceNotFoundException{
+        Optional<Odontologo> odontologo = repository.findById(id);
+        if (odontologo.isPresent())
         repository.deleteById(id);
+        else throw new ResourceNotFoundException("Odontólogo con id: "+id+", no encontrado.");
     }
 
     @Override

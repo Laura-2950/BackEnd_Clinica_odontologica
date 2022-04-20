@@ -1,5 +1,6 @@
 package com.dh.clinica.service.implementation;
 
+import com.dh.clinica.exception.ResourceNotFoundException;
 import com.dh.clinica.model.dto.DomicilioDTO;
 import com.dh.clinica.model.dto.OdontologoDTO;
 import com.dh.clinica.model.dto.PacienteDTO;
@@ -46,7 +47,7 @@ class TurnoServiceTest {
     }
 
     @Test
-     public void eliminarTurno() {
+     public void eliminarTurno() throws ResourceNotFoundException {
         DomicilioDTO domicilioDTO= new DomicilioDTO();
         domicilioDTO.setNumero("125");
         domicilioDTO.setProvincia("Catamaca");

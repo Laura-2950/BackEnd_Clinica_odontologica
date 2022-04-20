@@ -1,7 +1,8 @@
 package com.dh.clinica.service.implementation;
 
-import com.dh.clinica.model.entity.Paciente;
+import com.dh.clinica.exception.ResourceNotFoundException;
 import com.dh.clinica.model.dto.PacienteDTO;
+import com.dh.clinica.model.entity.Paciente;
 import com.dh.clinica.repository.IPacienteRepository;
 import com.dh.clinica.service.IPacienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,8 +50,11 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public void eliminarPaciente(Long id) {
-        repository.deleteById(id);
+    public void eliminarPaciente(Long id) throws ResourceNotFoundException{
+        Optional<Paciente> paciente = repository.findById(id);
+        if (paciente.isPresent())
+            repository.deleteById(id);
+        else throw new ResourceNotFoundException("Paciente con id: "+id+", no encontrado.");
     }
 
 

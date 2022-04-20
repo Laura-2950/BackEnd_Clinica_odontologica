@@ -1,5 +1,6 @@
 package com.dh.clinica.service.implementation;
 
+import com.dh.clinica.exception.ResourceNotFoundException;
 import com.dh.clinica.model.dto.OdontologoDTO;
 import com.dh.clinica.service.IOdontologoService;
 import org.junit.jupiter.api.Test;
@@ -55,7 +56,7 @@ class OdontologoServiceTest {
     }
 
     @Test
-    public void eliminarOdontologo() {
+    public void eliminarOdontologo() throws ResourceNotFoundException {
         OdontologoDTO odontologoDTO= new OdontologoDTO();
         odontologoDTO.setApellido("Sanchez");
         odontologoDTO.setMatricula("AD56992");
