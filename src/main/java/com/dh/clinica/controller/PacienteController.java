@@ -12,7 +12,7 @@ import java.util.Set;
 //chequeado
 @RestController
 @RequestMapping("/pacientes")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="*")
 public class PacienteController {
 
     private PacienteService pacienteService;

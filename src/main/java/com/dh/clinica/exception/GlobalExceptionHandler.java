@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> respuestaErrores(Exception e, WebRequest w) {
         logger.error(e.getMessage());
-        return new ResponseEntity("El servidor no pudo pocesa la petición.", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity("El servidor no pudo procesa la petición.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler({ResourceNotFoundException.class})

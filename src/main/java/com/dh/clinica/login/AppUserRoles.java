@@ -1,7 +1,7 @@
 package com.dh.clinica.login;
 
 public enum AppUserRoles {
-    USER, ADMIN;
+    ROLE_USER, ROLE_ADMIN;
 
 
 }

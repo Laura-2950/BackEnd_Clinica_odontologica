@@ -13,7 +13,7 @@ import java.util.Set;
 //chequeado
 @RestController
 @RequestMapping("/turnos")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="*")
 public class TurnoController {
 
     private TurnoService turnoService;

@@ -30,12 +30,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/**")
-                .permitAll()
+                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/register").permitAll()
+                .antMatchers("/turnos").hasAuthority(AppUserRoles.ROLE_USER.name())
+                .antMatchers("/odontologos").permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .httpBasic();
-                //.formLogin();
+                .httpBasic().and()
+                .formLogin().and().logout();
 
 
 

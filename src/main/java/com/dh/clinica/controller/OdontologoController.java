@@ -14,7 +14,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/odontologos")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="*")
 public class OdontologoController {
 
     private OdontologoService odontologoService;
