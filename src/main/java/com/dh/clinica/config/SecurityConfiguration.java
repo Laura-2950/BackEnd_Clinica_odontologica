@@ -33,14 +33,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/authentication").permitAll()
-                .antMatchers("/turnos/**").permitAll()//.hasAuthority(AppUserRoles.ROLE_USER.name())
+                .antMatchers("/turnos/**").permitAll()
                 .antMatchers("/odontologos/**").permitAll()
                 .antMatchers("/pacientes/**").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .httpBasic().and()
                 .formLogin().and();
-                //.logout();
+
 
 
 

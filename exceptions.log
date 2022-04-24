@@ -269,3 +269,6 @@ delete from domicilios where id=? [23503-210]]; nested exception is org.hibernat
 [2022-04-23 19:39:52] [ ERROR] [GlobalExceptionHandler:17] The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!
 [2022-04-23 19:55:40] [ ERROR] [GlobalExceptionHandler:17] 
 [2022-04-23 19:55:59] [ ERROR] [GlobalExceptionHandler:17] 
+[2022-04-23 21:41:18] [ ERROR] [GlobalExceptionHandler:17] 
+[2022-04-23 22:02:08] [ ERROR] [GlobalExceptionHandler:17] 
+[2022-04-23 22:05:48] [ ERROR] [GlobalExceptionHandler:17] 
