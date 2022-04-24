@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
-//chequeado
+
 @RestController
 @RequestMapping("/pacientes")
 @CrossOrigin(origins="*")
@@ -23,21 +23,30 @@ public class PacienteController {
 
 
     @PostMapping()
-    public ResponseEntity<PacienteDTO> registrarPaciente(@RequestBody PacienteDTO pacienteDTO) {
-        return ResponseEntity.ok(pacienteService.agregarPaciente(pacienteDTO));
+    public ResponseEntity<PacienteDTO> registrarPaciente(@RequestBody PacienteDTO pacienteDTO) throws Exception{
+        ResponseEntity<PacienteDTO> response = null;
+        if (pacienteDTO.getId()==null && pacienteDTO.getDomicilio().getId()== null){
+            response = ResponseEntity.ok(pacienteService.agregarPaciente(pacienteDTO));
+        }else {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return response;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteDTO> buscar(@PathVariable Long id) {
+    public ResponseEntity<PacienteDTO> buscar(@PathVariable Long id) throws ResourceNotFoundException{
         PacienteDTO pacienteDTO = pacienteService.buscarPorId(id);
         return ResponseEntity.ok(pacienteDTO);
     }
 
     @PutMapping()
-    public ResponseEntity<PacienteDTO> actualizar(@RequestBody PacienteDTO pacienteDTO) {
+    public ResponseEntity<PacienteDTO> actualizar(@RequestBody PacienteDTO pacienteDTO) throws Exception{
         ResponseEntity<PacienteDTO> response = null;
+        PacienteDTO pacienteDTO1= pacienteService.buscarPorId(pacienteDTO.getId());
 
-        if (pacienteDTO.getId() != null && pacienteService.buscarPorId(pacienteDTO.getId()) != null) {
+        if (pacienteDTO.getId() != null && pacienteDTO.getDomicilio().getId() != null &&
+                pacienteDTO1 != null &&
+                pacienteDTO1.getDomicilio().getId() == pacienteDTO.getDomicilio().getId()) {
             response = ResponseEntity.ok(pacienteService.actualizarPaciente(pacienteDTO));
         }else {
             response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();

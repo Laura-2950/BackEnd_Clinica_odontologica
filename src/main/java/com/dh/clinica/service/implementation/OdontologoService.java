@@ -2,8 +2,8 @@ package com.dh.clinica.service.implementation;
 
 
 import com.dh.clinica.exception.ResourceNotFoundException;
-import com.dh.clinica.model.entity.Odontologo;
 import com.dh.clinica.model.dto.OdontologoDTO;
+import com.dh.clinica.model.entity.Odontologo;
 import com.dh.clinica.repository.IOdontologoRepository;
 import com.dh.clinica.service.IOdontologoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,12 +31,14 @@ public class OdontologoService implements IOdontologoService {
     public void setMapper(ObjectMapper mapper) { this.mapper = mapper; }
 
     @Override
-    public OdontologoDTO buscarPorId(Long id) {
+    public OdontologoDTO buscarPorId(Long id) throws ResourceNotFoundException{
         Optional<Odontologo> odontologo = repository.findById(id);
         OdontologoDTO odontologoDTO = null;
 
         if(odontologo.isPresent()) {
             odontologoDTO = mapper.convertValue(odontologo, OdontologoDTO.class);
+        }else {
+            throw new ResourceNotFoundException("Odontólogo con id: "+id+", no encontrado.");
         }
         return odontologoDTO;
     }
@@ -61,14 +63,20 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public OdontologoDTO actualizarOdontologo(OdontologoDTO odontologoDTO) {
-        Odontologo odontologo = mapper.convertValue(odontologoDTO, Odontologo.class);
-        return mapper.convertValue(repository.save(odontologo), OdontologoDTO.class);
+    public OdontologoDTO actualizarOdontologo(OdontologoDTO odontologoDTO) throws Exception{
+        return agregarOdontologo(odontologoDTO);
     }
 
     @Override
-    public OdontologoDTO agregarOdontologo(OdontologoDTO odontologoDTO) {
+    public OdontologoDTO agregarOdontologo(OdontologoDTO odontologoDTO) throws Exception {
         Odontologo odontologo = mapper.convertValue(odontologoDTO, Odontologo.class);
-        return mapper.convertValue(repository.save(odontologo), OdontologoDTO.class);
+
+        if (odontologo.getApellido() ==null || odontologo.getNombre()==null || odontologo.getMatricula()==null){
+            throw new Exception();
+        }else {
+            odontologo =repository.save(odontologo);
+        }
+
+        return mapper.convertValue(odontologo, OdontologoDTO.class);
     }
 }

@@ -1,5 +1,6 @@
 package com.dh.clinica.service.implementation;
 
+
 import com.dh.clinica.exception.ResourceNotFoundException;
 import com.dh.clinica.model.dto.DomicilioDTO;
 import com.dh.clinica.model.dto.OdontologoDTO;
@@ -20,6 +21,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.Set;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -47,7 +50,7 @@ class TurnoServiceTest {
     }
 
     @Test
-     public void eliminarTurno() throws ResourceNotFoundException {
+     public void eliminarTurno() throws  Exception{
         DomicilioDTO domicilioDTO= new DomicilioDTO();
         domicilioDTO.setNumero("125");
         domicilioDTO.setProvincia("Catamaca");
@@ -73,24 +76,27 @@ class TurnoServiceTest {
         TurnoDTO turnoDTO= new TurnoDTO();
         turnoDTO.setOdontologo(mapper.convertValue(odontologoDTO1, Odontologo.class));
         turnoDTO.setPaciente(mapper.convertValue(pacienteDTO1, Paciente.class));
-        turnoDTO.setFechaIngreso(LocalDate.parse("2021-10-01"));
+        turnoDTO.setFechaIngreso(LocalDate.parse("2022-10-01"));
 
         TurnoDTO turnoDTO1= turnoService.agregarTurno(turnoDTO);
         turnoService.eliminarTurno(turnoDTO1.getId());
+        Exception exception =assertThrows(ResourceNotFoundException.class,() -> {
+            turnoService.buscarPorId(turnoDTO1.getId());
+        });
 
-        assertTrue(turnoService.buscarPorId(turnoDTO1.getId()) == null);
+        assertNotNull(exception.getMessage());
     }
 
     @Test
-     public void actualizarTurno() {
+     public void actualizarTurno() throws Exception {
         DomicilioDTO domicilioDTO= new DomicilioDTO();
-        domicilioDTO.setNumero("125");
-        domicilioDTO.setProvincia("Catamaca");
-        domicilioDTO.setLocalidad("Tinogasta");
-        domicilioDTO.setCalle("Las Heras");
+        domicilioDTO.setNumero("368");
+        domicilioDTO.setProvincia("Buenos Aires");
+        domicilioDTO.setLocalidad("Bahía Blanca");
+        domicilioDTO.setCalle("Manuel Belgrano");
 
         PacienteDTO pacienteDTO= new PacienteDTO();
-        pacienteDTO.setApellido("Juárez");
+        pacienteDTO.setApellido("Álvarez");
         pacienteDTO.setDni("27.241.991");
         pacienteDTO.setDomicilio(mapper.convertValue(domicilioDTO, Domicilio.class));
         pacienteDTO.setFechaIngreso(LocalDate.parse("2022-05-01"));
@@ -99,8 +105,8 @@ class TurnoServiceTest {
         PacienteDTO pacienteDTO1=pacienteService.agregarPaciente(pacienteDTO);
 
         OdontologoDTO odontologoDTO= new OdontologoDTO();
-        odontologoDTO.setApellido("Ramirez");
-        odontologoDTO.setMatricula("AD45824");
+        odontologoDTO.setApellido("Andrade");
+        odontologoDTO.setMatricula("AB47424");
         odontologoDTO.setNombre("Francisco");
 
         OdontologoDTO odontologoDTO1= odontologoService.agregarOdontologo(odontologoDTO);
@@ -108,21 +114,21 @@ class TurnoServiceTest {
         TurnoDTO turnoDTO= new TurnoDTO();
         turnoDTO.setOdontologo(mapper.convertValue(odontologoDTO1, Odontologo.class));
         turnoDTO.setPaciente(mapper.convertValue(pacienteDTO1, Paciente.class));
-        turnoDTO.setFechaIngreso(LocalDate.parse("2021-10-01"));
+        turnoDTO.setFechaIngreso(LocalDate.parse("2022-10-01"));
 
 
         TurnoDTO turnoDTO1= turnoService.agregarTurno(turnoDTO);
-        turnoDTO1.setFechaIngreso(LocalDate.parse("2021-10-10"));
+        turnoDTO1.setFechaIngreso(LocalDate.parse("2022-06-10"));
 
         TurnoDTO turnoDTO2= turnoService.actualizarTurno(turnoDTO1);
 
-        Assertions.assertEquals( turnoService.buscarPorId(turnoDTO2.getId()).getFechaIngreso(), LocalDate.of(2021,10,10));
+        Assertions.assertEquals( turnoService.buscarPorId(turnoDTO2.getId()).getFechaIngreso(), LocalDate.of(2022,06,10));
     }
 
     @Test
-     public void agregarBuscarTurno() {
+     public void agregarBuscarTurno() throws Exception {
         DomicilioDTO domicilioDTO= new DomicilioDTO();
-        domicilioDTO.setNumero("1296");
+        domicilioDTO.setNumero("358");
         domicilioDTO.setProvincia("San Juan");
         domicilioDTO.setLocalidad("San Juan");
         domicilioDTO.setCalle("Pueyrredón");
@@ -146,7 +152,7 @@ class TurnoServiceTest {
         TurnoDTO turnoDTO= new TurnoDTO();
         turnoDTO.setOdontologo(mapper.convertValue(odontologoDTO1, Odontologo.class));
         turnoDTO.setPaciente(mapper.convertValue(pacienteDTO1, Paciente.class));
-        turnoDTO.setFechaIngreso(LocalDate.parse("2022-10-01"));
+        turnoDTO.setFechaIngreso(LocalDate.parse("2022-08-13"));
 
         TurnoDTO turnoDTO1= turnoService.agregarTurno(turnoDTO);
 

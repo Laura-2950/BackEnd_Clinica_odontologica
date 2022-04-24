@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 import java.util.Set;
 
-//chequeado
+
 @ToString
 @Getter
 @Entity
@@ -22,8 +22,6 @@ public class Paciente {
     private String nombre;
     private String apellido;
     private String dni;
-    //@Temporal(TemporalType.DATE)
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaIngreso;
 
 
@@ -32,7 +30,6 @@ public class Paciente {
     private Domicilio domicilio;
 
 
-    //orphanRemoval = true en @OneToMany
     @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Turno> turnos;

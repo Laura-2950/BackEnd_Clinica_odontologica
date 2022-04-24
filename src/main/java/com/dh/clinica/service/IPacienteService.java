@@ -6,9 +6,9 @@ import com.dh.clinica.model.dto.PacienteDTO;
 import java.util.Set;
 
 public interface IPacienteService {
-    PacienteDTO buscarPorId(Long id);
+    PacienteDTO buscarPorId(Long id) throws ResourceNotFoundException;
     Set<PacienteDTO> buscarTodos();
     void eliminarPaciente(Long id) throws ResourceNotFoundException;
-    PacienteDTO actualizarPaciente(PacienteDTO pacienteDTO);
-    PacienteDTO agregarPaciente(PacienteDTO pacienteDTO);
+    PacienteDTO actualizarPaciente(PacienteDTO pacienteDTO) throws Exception;
+    PacienteDTO agregarPaciente(PacienteDTO pacienteDTO) throws Exception;
 }

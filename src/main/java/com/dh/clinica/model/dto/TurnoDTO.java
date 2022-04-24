@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 
-//chequeado
+
 @Getter
 public class TurnoDTO {
 

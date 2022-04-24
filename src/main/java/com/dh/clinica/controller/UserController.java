@@ -1,5 +1,6 @@
-package com.dh.clinica.login;
+package com.dh.clinica.controller;
 
+import com.dh.clinica.service.implementation.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class UserController {
         this.appUserService = appUserService;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/authentication", method = RequestMethod.GET)
     public ResponseEntity<?> toRegister() throws Exception{
         return null;
     }

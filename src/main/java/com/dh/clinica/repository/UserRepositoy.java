@@ -1,6 +1,7 @@
-package com.dh.clinica.login;
+package com.dh.clinica.repository;
 
 
+import com.dh.clinica.model.entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

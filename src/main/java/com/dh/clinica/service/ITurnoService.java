@@ -6,9 +6,9 @@ import com.dh.clinica.model.dto.TurnoDTO;
 import java.util.Set;
 
 public interface ITurnoService {
-    TurnoDTO buscarPorId(Long id);
+    TurnoDTO buscarPorId(Long id) throws ResourceNotFoundException;
     Set<TurnoDTO> buscarTodos();
     void eliminarTurno(Long id) throws ResourceNotFoundException;
-    TurnoDTO actualizarTurno(TurnoDTO turnoDTO);
-    TurnoDTO agregarTurno(TurnoDTO turnoDTO);
+    TurnoDTO actualizarTurno(TurnoDTO turnoDTO) throws Exception;
+    TurnoDTO agregarTurno(TurnoDTO turnoDTO) throws Exception;
 }

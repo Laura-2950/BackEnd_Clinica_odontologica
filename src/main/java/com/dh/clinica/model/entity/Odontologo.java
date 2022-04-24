@@ -7,7 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.Set;
 
-//chequeado
+
 @ToString
 @Getter
 @Entity

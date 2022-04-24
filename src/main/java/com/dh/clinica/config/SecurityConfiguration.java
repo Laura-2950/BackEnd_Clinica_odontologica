@@ -1,6 +1,7 @@
-package com.dh.clinica.login;
+package com.dh.clinica.config;
 
 
+import com.dh.clinica.service.implementation.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-    private  AppUserService userService;
+    private AppUserService userService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
@@ -31,13 +32,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/turnos").hasAuthority(AppUserRoles.ROLE_USER.name())
-                .antMatchers("/odontologos").permitAll()
+                .antMatchers("/authentication").permitAll()
+                .antMatchers("/turnos/**").permitAll()//.hasAuthority(AppUserRoles.ROLE_USER.name())
+                .antMatchers("/odontologos/**").permitAll()
+                .antMatchers("/pacientes/**").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .httpBasic().and()
-                .formLogin().and().logout();
+                .formLogin().and();
+                //.logout();
 
 
 

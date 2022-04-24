@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-//chequeado
+
 @Service
 public class PacienteService implements IPacienteService {
 
@@ -31,11 +31,13 @@ public class PacienteService implements IPacienteService {
 
 
     @Override
-    public PacienteDTO buscarPorId(Long id) {
+    public PacienteDTO buscarPorId(Long id) throws ResourceNotFoundException{
         Optional<Paciente> paciente = repository.findById(id);
         PacienteDTO pacienteDTO = null;
         if(paciente.isPresent()) {
             pacienteDTO = mapper.convertValue(paciente, PacienteDTO.class);
+        }else {
+            throw new ResourceNotFoundException("Paciente con id: "+id+", no encontrado.");
         }
         return pacienteDTO;
     }
@@ -59,15 +61,28 @@ public class PacienteService implements IPacienteService {
 
 
     @Override
-    public PacienteDTO actualizarPaciente(PacienteDTO pacienteDTO) {
-        Paciente paciente = mapper.convertValue(pacienteDTO, Paciente.class);
-        return mapper.convertValue(repository.save(paciente), PacienteDTO.class);
+    public PacienteDTO actualizarPaciente(PacienteDTO pacienteDTO) throws Exception{
+        return agregarPaciente(pacienteDTO);
     }
 
-    //ANDA
+
     @Override
-    public PacienteDTO agregarPaciente(PacienteDTO pacienteDTO) {
+    public PacienteDTO agregarPaciente(PacienteDTO pacienteDTO) throws Exception{
         Paciente paciente = mapper.convertValue(pacienteDTO, Paciente.class);
-        return mapper.convertValue(repository.save(paciente), PacienteDTO.class);
+
+        if (paciente.getDomicilio().getCalle() ==null ||
+                paciente.getDomicilio().getLocalidad() ==null ||
+                paciente.getDomicilio().getNumero() ==null ||
+                paciente.getDomicilio().getProvincia() ==null ||
+                paciente.getFechaIngreso()==null ||
+                paciente.getNombre()== null ||
+                paciente.getApellido()==null ||
+                paciente.getDni()==null){
+            throw new Exception();
+        }else {
+            paciente=repository.save(paciente);
+        }
+
+        return mapper.convertValue(paciente, PacienteDTO.class);
     }
 }

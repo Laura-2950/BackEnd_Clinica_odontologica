@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-//chequeado
+
 @Service
 public class TurnoService implements ITurnoService {
 
@@ -31,11 +31,13 @@ public class TurnoService implements ITurnoService {
     public void TurnoService(ObjectMapper mapper) { this.mapper = mapper; }
 
     @Override
-    public TurnoDTO buscarPorId(Long id) {
+    public TurnoDTO buscarPorId(Long id) throws ResourceNotFoundException{
         Optional<Turno> turno = repository.findById(id);
         TurnoDTO turnoDTO = null;
         if (turno.isPresent()) {
             turnoDTO = mapper.convertValue(turno, TurnoDTO.class);
+        }else {
+            throw new ResourceNotFoundException("Turno con id: "+id+", no encontrado.");
         }
         return turnoDTO;
     }
@@ -54,18 +56,22 @@ public class TurnoService implements ITurnoService {
         Optional<Turno> turno = repository.findById(id);
         if (turno.isPresent())
         repository.deleteById(id);
-        else throw new ResourceNotFoundException("Odontólogo con id: "+id+", no encontrado.");
+        else throw new ResourceNotFoundException("Turno con id: "+id+", no encontrado.");
     }
 
     @Override
-    public TurnoDTO actualizarTurno(TurnoDTO turnoDTO) {
-        Turno turno = mapper.convertValue(turnoDTO, Turno.class);
-        return mapper.convertValue(repository.save(turno), TurnoDTO.class);
+    public TurnoDTO actualizarTurno(TurnoDTO turnoDTO) throws Exception{
+        return agregarTurno(turnoDTO);
     }
 
     @Override
-    public TurnoDTO agregarTurno(TurnoDTO turnoDTO) {
+    public TurnoDTO agregarTurno(TurnoDTO turnoDTO) throws Exception {
         Turno turno = mapper.convertValue(turnoDTO, Turno.class);
-        return mapper.convertValue(repository.save(turno), TurnoDTO.class);
+        if (turno.getPaciente().getId() ==null || turno.getOdontologo().getId()==null || turno.getFechaIngreso()== null){
+            throw new Exception();
+        }else {
+            turno=repository.save(turno);
+        }
+        return mapper.convertValue(turno, TurnoDTO.class);
     }
 }

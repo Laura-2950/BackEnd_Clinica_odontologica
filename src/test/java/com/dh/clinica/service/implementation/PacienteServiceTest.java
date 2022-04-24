@@ -13,6 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.Set;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -29,11 +31,11 @@ class PacienteServiceTest {
     }
 
     @Test
-    public void agregarYBuscarPorIdUnPaciente() {
+    public void agregarYBuscarPorIdUnPaciente() throws Exception{
         DomicilioDTO domicilioDTO= new DomicilioDTO();
-        domicilioDTO.setNumero("2982");
+        domicilioDTO.setNumero("252");
         domicilioDTO.setProvincia("Buenos Aires");
-        domicilioDTO.setLocalidad("Lujan");
+        domicilioDTO.setLocalidad("Berisso");
         domicilioDTO.setCalle("Julio A. Roca");
 
         PacienteDTO pacienteDTO= new PacienteDTO();
@@ -49,7 +51,7 @@ class PacienteServiceTest {
     }
 
     @Test
-    public void modificarUnPaciente() {
+    public void modificarUnPaciente() throws Exception{
         DomicilioDTO domicilioDTO= new DomicilioDTO();
         domicilioDTO.setNumero("2982");
         domicilioDTO.setProvincia("Neuquen");
@@ -79,7 +81,7 @@ class PacienteServiceTest {
     }
 
     @Test
-    public void eliminarPaciente() throws ResourceNotFoundException {
+    public void eliminarPaciente() throws Exception {
         DomicilioDTO domicilioDTO= new DomicilioDTO();
         domicilioDTO.setNumero("1005");
         domicilioDTO.setProvincia("La Pampa");
@@ -95,8 +97,12 @@ class PacienteServiceTest {
 
         PacienteDTO pacienteDTO1=pacienteService.agregarPaciente(pacienteDTO);
         pacienteService.eliminarPaciente(pacienteDTO1.getId());
+        Exception exception =assertThrows(ResourceNotFoundException.class,() -> {
+            pacienteService.buscarPorId(pacienteDTO1.getId());
+        });
 
-        assertTrue(pacienteService.buscarPorId(pacienteDTO1.getId()) == null);
+        assertNotNull(exception.getMessage());
+
     }
 
 

@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Set;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -23,7 +25,7 @@ class OdontologoServiceTest {
 
 
     @Test
-    public void crearYBuscarPorId() {
+    public void crearYBuscarPorId() throws Exception{
         OdontologoDTO odontologoDTO= new OdontologoDTO();
         odontologoDTO.setApellido("Rodriguez");
         odontologoDTO.setMatricula("AB45962");
@@ -36,7 +38,7 @@ class OdontologoServiceTest {
     }
 
     @Test
-    public void actualizarOdontologo() {
+    public void actualizarOdontologo() throws Exception{
         OdontologoDTO odontologoDTO= new OdontologoDTO();
         odontologoDTO.setApellido("Martinez");
         odontologoDTO.setMatricula("AC52792");
@@ -56,15 +58,19 @@ class OdontologoServiceTest {
     }
 
     @Test
-    public void eliminarOdontologo() throws ResourceNotFoundException {
+    public void eliminarOdontologo() throws Exception, ResourceNotFoundException {
         OdontologoDTO odontologoDTO= new OdontologoDTO();
         odontologoDTO.setApellido("Sanchez");
         odontologoDTO.setMatricula("AD56992");
         odontologoDTO.setNombre("Maiano");
         OdontologoDTO odontologoDTO1= odontologoService.agregarOdontologo(odontologoDTO);
         odontologoService.eliminarOdontologo(odontologoDTO1.getId());
+        Exception exception =assertThrows(ResourceNotFoundException.class,() -> {
+            odontologoService.buscarPorId(odontologoDTO1.getId());
+        });
 
-        assertTrue(odontologoService.buscarPorId(odontologoDTO1.getId()) == null);
+        assertNotNull(exception.getMessage());
+
     }
 
 }

@@ -1,5 +1,6 @@
-package com.dh.clinica.login;
+package com.dh.clinica.service.implementation;
 
+import com.dh.clinica.repository.UserRepositoy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

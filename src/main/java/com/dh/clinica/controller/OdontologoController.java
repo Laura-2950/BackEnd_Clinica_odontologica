@@ -25,18 +25,24 @@ public class OdontologoController {
 
 
     @PostMapping()
-    public ResponseEntity<OdontologoDTO> registrarOdontologo(@RequestBody OdontologoDTO odontologoDTO) {
-        return ResponseEntity.ok(odontologoService.agregarOdontologo(odontologoDTO));
+    public ResponseEntity<OdontologoDTO> registrarOdontologo(@RequestBody OdontologoDTO odontologoDTO) throws Exception{
+        ResponseEntity<OdontologoDTO> response = null;
+        if (odontologoDTO.getId()==null){
+            response = ResponseEntity.ok(odontologoService.agregarOdontologo(odontologoDTO));
+        }else {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return response;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OdontologoDTO> buscar(@PathVariable Long id) {
+    public ResponseEntity<OdontologoDTO> buscar(@PathVariable Long id) throws ResourceNotFoundException{
         OdontologoDTO odontologoDTO = odontologoService.buscarPorId(id);
         return ResponseEntity.ok(odontologoDTO);
     }
 
     @PutMapping()
-    public ResponseEntity<OdontologoDTO> actualizar(@RequestBody OdontologoDTO odontologoDTO) {
+    public ResponseEntity<OdontologoDTO> actualizar(@RequestBody OdontologoDTO odontologoDTO) throws Exception{
         ResponseEntity<OdontologoDTO> response = null;
 
         if (odontologoDTO.getId() != null && odontologoService.buscarPorId(odontologoDTO.getId()) != null)

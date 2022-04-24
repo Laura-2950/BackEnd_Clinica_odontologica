@@ -7,9 +7,9 @@ import java.util.Set;
 
 public interface IOdontologoService {
 
-    OdontologoDTO buscarPorId(Long id);
+    OdontologoDTO buscarPorId(Long id) throws ResourceNotFoundException;
     Set<OdontologoDTO> buscarTodos();
     void eliminarOdontologo(Long id) throws ResourceNotFoundException;
-    OdontologoDTO actualizarOdontologo(OdontologoDTO odontologoDTO);
-    OdontologoDTO agregarOdontologo(OdontologoDTO odontologoDTO);
+    OdontologoDTO actualizarOdontologo(OdontologoDTO odontologoDTO) throws Exception;
+    OdontologoDTO agregarOdontologo(OdontologoDTO odontologoDTO) throws Exception ;
 }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 
-//chequeado
+
 @ToString
 @Getter
 @Entity
@@ -17,9 +17,6 @@ public class Turno {
     @SequenceGenerator(name = "turno_sequence", sequenceName = "turno_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turno_sequence")
     private Long id;
-
-    //@Temporal(TemporalType.DATE)
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaIngreso;
 
 

@@ -1,6 +1,7 @@
-package com.dh.clinica.login;
+package com.dh.clinica.model.entity;
 
 
+import com.dh.clinica.config.auth.AppUserRoles;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

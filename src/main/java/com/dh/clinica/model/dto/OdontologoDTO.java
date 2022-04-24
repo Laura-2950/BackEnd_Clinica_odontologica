@@ -3,7 +3,7 @@ package com.dh.clinica.model.dto;
 
 import lombok.Getter;
 
-//chequeado
+
 @Getter
 public class OdontologoDTO {
 

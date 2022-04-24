@@ -1,6 +1,7 @@
-package com.dh.clinica.login;
+package com.dh.clinica.config.auth;
 
 
+import com.dh.clinica.repository.UserRepositoy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
